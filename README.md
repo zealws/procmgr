@@ -1,9 +1,9 @@
 # `procmgr`
 
 `procmgr` is a simple process manager for managing running processes.
-It is loosely based on process management of services like upstart and systemd, but is not meant to be a full init system.
+It is loosely based on process management of services like upstart and systemd.
 
-It was designed with docker containers in mind. `procmgr` was designed to provide a simple way to manage services in a system without normal `/sbin/init` process management.
+`procmgr` was designed to provide a simple way to manage services in a system without sufficient `/sbin/init` process management.
 
 ## Config
 
