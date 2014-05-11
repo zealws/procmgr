@@ -1,0 +1,9 @@
+processes:
+-
+  # This process prints 'Hello' to stdout once every 2 seconds.
+  # It is restarted by the service manager when it stops cleanly (0 exit code).
+  # If it exists with non-zero exit code, it will not be restarted.
+  name: greeter
+  command: echo 'Hello' ; sleep 2
+  streams: [stdout]
+  restart: true

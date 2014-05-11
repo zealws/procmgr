@@ -1,0 +1,30 @@
+processes:
+-
+  # Simple task.
+  # Attaches stdout so that the echo will be printed to screen.
+  name: hello
+  command: echo 'Hello World'
+  streams: [stdout]
+  restart: false
+-
+  # Sleep for 2 seconds to demonstrate the dependencies
+  name: sleep
+  command: sleep 2
+  streams: []
+  restart: false
+  after: [hello.finished]
+-
+  # Wait until the sleep finishes and say hello again
+  name: helloagain
+  command: echo 'Hello Again'
+  streams: [stdout]
+  restart: false
+  after: [sleep.finished]
+-
+  # Run at the same time as 'helloagain' and print goodbye to stderr
+  # Attaches stderr so that the echo will be printed to the screen.
+  name: goodbye
+  command: echo 'Goodbye World' 1>&2
+  streams: [stderr]
+  restart: false
+  after: [helloagain.started]

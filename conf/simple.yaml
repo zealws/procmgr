@@ -1,0 +1,24 @@
+processes:
+-
+  name: hello
+  command: echo 'Hello World'
+  streams: [stdout]
+  restart: false
+-
+  name: sleep
+  command: sleep 2
+  streams: []
+  restart: false
+  after: [hello.finished]
+-
+  name: goodbye
+  command: echo 'Goodbye World' 1>&2
+  streams: [stderr]
+  restart: false
+  after: [sleep.finished]
+-
+  name: hello-again
+  command: echo 'Hello Again'
+  streams: [stdout]
+  restart: false
+  after: [goodbye.started]
