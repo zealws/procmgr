@@ -1,7 +1,9 @@
-# Procmgr - A Simple Process Manager
+# `procmgr`
 
-`procmgr` is a process manager for managing running processes.
+`procmgr` is a simple process manager for managing running processes.
 It is loosely based on process management of services like upstart and systemd, but is not meant to be a full init system.
+
+It was designed with docker containers in mind. `procmgr` was designed to provide a simple way to manage services in a system without normal `/sbin/init` process management.
 
 ## Config
 
@@ -20,7 +22,7 @@ The process will have it's stdout piped to the current stdout. Stdin and stderr 
 
 ### Dependencies
 
-Processes can be chained in an event-driven system:
+Processes can be chained by providing the `after:` field. All processes are run in parallel, and will wait for processes which have been marked in their `after` section to finish before starting.
 
     processes:
     -
